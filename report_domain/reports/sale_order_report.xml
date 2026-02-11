@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <record id="action_report_saleorder_confirmed" model="ir.actions.report">
+        <field name="name">Confirmed Order Report</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_domain.report_saleorder_confirmed_template</field>
+        <field name="report_file">report_domain.report_saleorder_confirmed_template</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="domain">[('state', '=', 'sale')]</field>
+    </record>
+
+    <record id="action_report_saleorder_draft" model="ir.actions.report">
+        <field name="name">Quotation Order Report</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_domain.report_saleorder_confirmed_template</field>
+        <field name="report_file">report_domain.report_saleorder_confirmed_template</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="domain">[('state', 'in', ('draft', 'sent'))]</field>
+    </record>
+
+    <template id="report_saleorder_confirmed_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Confirmed Order: <span t-field="doc.name"/></h2>
+                        <p>This report is only visible when the order is in 'Sale' state.</p>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.order_line" t-as="line">
+                                    <td><span t-field="line.name"/></td>
+                                    <td><span t-field="line.product_uom_qty"/></td>
+                                    <td><span t-field="line.price_unit"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>

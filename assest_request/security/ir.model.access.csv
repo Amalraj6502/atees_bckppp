@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_asset_request_user,asset.request,model_asset_request,assest_request.group_asset_request_user,1,1,1,0
+access_asset_request_manager,asset.request,model_asset_request,assest_request.group_asset_request_manager,1,1,1,1
+access_asset_type_user,asset.type,model_asset_type,assest_request.group_asset_request_user,1,1,1,0
+access_asset_type_manager,asset.type,model_asset_type,assest_request.group_asset_request_manager,1,1,1,1
