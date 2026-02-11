@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="your_module.CustomMany2OneField" owl="1">
+        <div class="pos-m2o-container">
+            <span class="m2o-label">Custom Partner:</span>
+            <Many2XAutocomplete t-props="partnerProps"/>
+        </div>
+    </t>
+
+    <t t-name="point_of_sale.ControlButtons" t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='props.showRemainingButtons']/div/OrderlineNoteButton" position="after">
+            <t t-component="CustomPartnerButton"/>
+        </xpath>
+    </t>
+
+</templates>
