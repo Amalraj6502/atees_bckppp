@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- New category for better grouping in settings -->
+        <record id="category_product_restriction" model="ir.module.category">
+            <field name="name">Product Access Management</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- New group for Read-Only Access -->
+        <record id="group_product_read_only" model="res.groups">
+            <field name="name">Product Read-Only</field>
+            <field name="category_id" ref="category_product_restriction"/>
+            <field name="comment">Users in this group can only VIEW products. They cannot create, edit, or delete them.</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>
